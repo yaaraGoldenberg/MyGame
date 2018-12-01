@@ -1,3 +1,4 @@
+package Test;
 import java.io.File;
 
 import Coords.MyCoords;
