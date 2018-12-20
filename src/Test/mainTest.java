@@ -5,6 +5,7 @@ import Coords.MyCoords;
 import Geom.Geom_element;
 import Geom.Point3D;
 import GIS.Project;
+import GIS.Data;
 import GIS.Element;
 import GIS.GIS_layer;
 import GIS.Layer;
@@ -52,8 +53,8 @@ public class mainTest {
 		}
 		System.out.println("\n");
 		System.out.println("MultiCSV test:");
-		File dir= new File("D:\\yaara\\Downloads");
-		//		File dir= new File("C:\\Users\\OrShemesh\\Downloads");
+		//		File dir= new File("D:\\yaara\\Downloads");
+		File dir= new File("C:\\Users\\OrShemesh\\Downloads");
 		MultiCSV.displayDirectoryContents(dir);
 		System.out.println("\n");
 		System.out.println("Element test:");
@@ -91,39 +92,41 @@ public class mainTest {
 		n.removeAll(n1);
 		System.out.println(n);
 		Layer a=new Layer();
-//		a.parseCSV("C:\\Users\\OrShemesh\\Downloads\\מונחה עצמים\\Ex2\\WigleWifi_20171201110209.csv");
-		a.parseCSV("D:\\yaara\\Downloads\\מונחה עצמים\\Ex2\\data\\WigleWifi_20171201110209.csv","info");
+		a.parseCSV("C:\\Users\\OrShemesh\\Downloads\\מונחה עצמים\\Ex2\\WigleWifi_20171201110209.csv","info");
+		//		a.parseCSV("D:\\yaara\\Downloads\\מונחה עצמים\\Ex2\\data\\WigleWifi_20171201110209.csv","info");
 		System.out.println(a);
-		a.writeFileKML("D:\\yaara\\Downloads\\" +  "8.kml");
-//		a.writeFileKML("C:\\Users\\OrShemesh\\Downloads\\" +  "8.kml");
+		//		a.writeFileKML("D:\\yaara\\Downloads\\" +  "8.kml");
+		a.writeFileKML("C:\\Users\\OrShemesh\\Downloads\\" +  "8.kml");
 		n.remove(aa);
 		System.out.println(n);
 		n1.add(c);
 		n1.add(d);
 		System.out.println(n.contains(aa));
 		System.out.println(n);
-		
+
 		System.out.println("\n");
 		System.out.println("Project test:");
-//		File dir= new File("C:\\Users\\OrShemesh\\Downloads");
-		File dir1= new File("D:\\yaara\\Downloads");
+		File dir1= new File("C:\\Users\\OrShemesh\\Downloads");
+		//		File dir1= new File("D:\\yaara\\Downloads");
 		Project a1=new Project();
 		a1.displayDirectoryContents(dir1,"info");
-//		File dir= new File("C:\\Users\\OrShemesh\\Downloads");
-//		displayDirectoryContents(dir);
+		//		File dir= new File("C:\\Users\\OrShemesh\\Downloads");
+		//		displayDirectoryContents(dir);
 		System.out.println(a1);
+		Data stam=(Data) a1.get_Meta_data();
+		System.out.println(stam);
 		Iterator<GIS_layer> It = a1.iterator();
 		int i=15;
-//		while(It.hasNext())
-//		{
-//			i++;
-//			((Layer) It.next()).writeFileKML("C:\\Users\\OrShemesh\\Downloads\\" +i+  ".kml");
-//		}
 		while(It.hasNext())
 		{
 			i++;
-			((Layer) It.next()).writeFileKML("D:\\yaara\\Downloads\\" +i+  ".kml");
+			((Layer) It.next()).writeFileKML("C:\\Users\\OrShemesh\\Downloads\\" +i+  ".kml");
 		}
+		//	while(It.hasNext())
+		//		{
+		//			i++;
+		//			((Layer) It.next()).writeFileKML("D:\\yaara\\Downloads\\" +i+  ".kml");
+		//		}
 
 
 

@@ -17,8 +17,8 @@ public class MultiCSV {
 					if(file.getCanonicalPath().contains(".csv"))
 					{
 						System.out.println("     file:" + file.getAbsolutePath());
-//						Csv2kml.parseCSV(file.getAbsolutePath(), "C:\\Users\\OrShemesh\\Downloads\\" + i + ".kml");
-						Csv2kml.parseCSV(file.getAbsolutePath(), "D:\\yaara\\Downloads\\" + i + ".kml");
+						Csv2kml.parseCSV(file.getAbsolutePath(), "C:\\Users\\OrShemesh\\Downloads\\" + i + ".kml");
+//						Csv2kml.parseCSV(file.getAbsolutePath(), "D:\\yaara\\Downloads\\" + i + ".kml");
 						i++;
 					}
 				}
