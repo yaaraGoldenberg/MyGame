@@ -32,7 +32,6 @@ public class MyFrame extends JFrame implements MouseListener {
 	Map map = new Map();
 	ArrayList<Fruit> Fruits = new ArrayList<Fruit>();
 	ArrayList<Packman> Packmans = new ArrayList<Packman>();
-
 	ShortestPathAlgo algo=new ShortestPathAlgo();
 	ArrayList<Packman> PackLine=new ArrayList<Packman>(); 
 
@@ -99,7 +98,7 @@ public class MyFrame extends JFrame implements MouseListener {
 		RadiusMenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String R = JOptionPane.showInputDialog("Enter your Radius: ");
+				String R = JOptionPane.showInputDialog("Enter Radius: ");
 				Radius = Integer.parseInt(R);
 			}
 		});
@@ -110,7 +109,7 @@ public class MyFrame extends JFrame implements MouseListener {
 		Speed.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String S = JOptionPane.showInputDialog("Enter your Speed: ");
+				String S = JOptionPane.showInputDialog("Enter Speed: ");
 				speed = Integer.parseInt(S);
 			}
 		});
@@ -124,6 +123,10 @@ public class MyFrame extends JFrame implements MouseListener {
 				Fruits.clear();
 				Packmans.clear();
 				id = 0;
+				if(!algo.paths.isEmpty()) {
+					algo.paths.clear();
+					PackLine.clear();
+				}
 				repaint();
 			}
 		});
@@ -139,7 +142,7 @@ public class MyFrame extends JFrame implements MouseListener {
 					PackLine.clear();
 				}
 				threadPackman();
-				isGamer=3;
+				isGamer = 3;
 				repaint();
 			}
 		});
@@ -152,7 +155,7 @@ public class MyFrame extends JFrame implements MouseListener {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-				fileChooser.setDialogTitle("Select an Csv File");
+				fileChooser.setDialogTitle("Select a Csv File");
 				fileChooser.setAcceptAllFileFilterUsed(false);
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("csv","CSV");
 				fileChooser.addChoosableFileFilter(filter);
@@ -177,7 +180,7 @@ public class MyFrame extends JFrame implements MouseListener {
 						P.locationP = new Point3D(P.locationP.x()/getWidth(),P.locationP.y()/getHeight());
 					}
 				}catch(NullPointerException e) {}
-				isGamer=2;
+				isGamer = 2;
 				repaint();
 			}
 		});
@@ -216,7 +219,7 @@ public class MyFrame extends JFrame implements MouseListener {
 					game.writeCsv(fileChooser.getSelectedFile().getPath(), game);
 					Fruits.clear();
 					Packmans.clear();
-					id=0;
+					id = 0;
 				}
 			}
 		});
@@ -229,7 +232,7 @@ public class MyFrame extends JFrame implements MouseListener {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-				fileChooser.setDialogTitle("Select a Kml File");
+				fileChooser.setDialogTitle("Select a kml File");
 				fileChooser.setAcceptAllFileFilterUsed(false);
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("kml","KML");
 				fileChooser.addChoosableFileFilter(filter);
@@ -270,13 +273,12 @@ public class MyFrame extends JFrame implements MouseListener {
 	public void threadPackman() {
 		ShortestPathAlgo Algo = new ShortestPathAlgo(new Game(Fruits,Packmans));
 		Iterator<Path> ItPath = Algo.paths.iterator();
-
 		while(ItPath.hasNext()) {
 			Path path=ItPath.next();
 			algo.paths.add(path);
 			PackLine.add(new Packman(path.pack));
 		}
-
+		
 		ItPath = Algo.paths.iterator();
 		while(ItPath.hasNext()) {
 			Path path = ItPath.next();
@@ -289,7 +291,7 @@ public class MyFrame extends JFrame implements MouseListener {
 						Fruit F = ItF.next();
 						double dis = map.disToGUI(F.locationF, p.locationP);
 						double time = (dis-p.radius)/p.speed;
-						for (double i=0; i < time; i=i+1/time+0.01) {
+						for (double i = 0; i < time; i = i+1/time+0.01) {
 							Point3D vec = new Point3D(F.locationF.x()-p.locationP.x(),F.locationF.y()-p.locationP.y());
 							double x = p.locationP.x()+(vec.x()/time);
 							double y = p.locationP.y()+(vec.y()/time);
@@ -313,60 +315,52 @@ public class MyFrame extends JFrame implements MouseListener {
 	/**
 	 * here we draw the game and setting the size of the fruit and packman image and for the size and color for the lines 
 	 * that represent the path that each packman does.
-	 * 
 	 */
+	
 	public void paint(Graphics g) {	
-		Map temp =new Map();
-		g.drawImage(temp.myImage, 0, 0, getWidth(), getHeight(), this);
-
+		g.drawImage(map.myImage, 0, 0, getWidth(), getHeight(), this);
 		Iterator<Packman> ItP = Packmans.iterator();
 		Iterator<Fruit> ItF = Fruits.iterator();
-
 		Iterator<Path> ItPath=algo.paths.iterator();
-
-
 		if(isGamer == 3) {				
 			Graphics2D g2 = (Graphics2D)g;
 			g.setColor(Color.BLUE);
 			g2.setStroke(new BasicStroke(5));
-			int j=0;
+			int pac_index = 0;
 			while(ItPath.hasNext()) {
 				Path path = ItPath.next();
-				double x_pack=PackLine.get(j).locationP.x()*getWidth();
-				double y_pack=PackLine.get(j).locationP.y()*getHeight();
+				double x_pack = PackLine.get(pac_index).locationP.x()*getWidth();
+				double y_pack = PackLine.get(pac_index).locationP.y()*getHeight();
 				for(int i = 0; i < path.Fruits.size(); i++) {
-
-					double x1=path.Fruits.get(i).locationF.x()*getWidth();
-					double y1=path.Fruits.get(i).locationF.y()*getHeight();
-					if(i==0) {
-						g.drawLine((int)x_pack, (int)y_pack,(int)x1, (int)y1);
+					double fru_x = path.Fruits.get(i).locationF.x()*getWidth();
+					double fru_y = path.Fruits.get(i).locationF.y()*getHeight();
+					if(i == 0) {
+						g.drawLine((int)x_pack, (int)y_pack,(int)fru_x, (int)fru_y);
+						pac_index++;
 					}
 					else {
-						double x=path.Fruits.get(i-1).locationF.x()*getWidth();
-						double y=path.Fruits.get(i-1).locationF.y()*getHeight();
-						g.drawLine((int)x, (int)y,(int)x1, (int)y1);
+						double fru1_x = path.Fruits.get(i-1).locationF.x()*getWidth();
+						double fru1_y = path.Fruits.get(i-1).locationF.y()*getHeight();
+						g.drawLine((int)fru1_x, (int)fru1_y,(int)fru_x, (int)fru_y);
 					}
 				}
-				j++;
 			}
 		}
-		if(isGamer == 1||isGamer == 0||isGamer == 2||isGamer==3) {
-			try {
-				while(ItF.hasNext()) {
-					Fruit fru = ItF.next();
-					double x_fru = fru.locationF.x()*getWidth();
-					double y_fru = fru.locationF.y()*getHeight();
-					g.drawImage(map.Fruit,(int)(x_fru), (int)(y_fru), 20, 20, null);	
-				}
-				while(ItP.hasNext()) {
-					Packman pac = (Packman) ItP.next();
-					double x_pac = pac.locationP.x()*getWidth();
-					double y_pac = pac.locationP.y()*getHeight();
-					g.drawImage(map.Packman, (int)(x_pac), (int)(y_pac), 25, 25, null);
-				}
+		try {
+			while(ItF.hasNext()) {
+				Fruit fru = ItF.next();
+				double x_fru = fru.locationF.x()*getWidth();
+				double y_fru = fru.locationF.y()*getHeight();
+				g.drawImage(map.Fruit,(int)(x_fru), (int)(y_fru), 20, 20, null);	
 			}
-			catch(ConcurrentModificationException e) {}
+			while(ItP.hasNext()) {
+				Packman pac = (Packman) ItP.next();
+				double x_pac = pac.locationP.x()*getWidth();
+				double y_pac = pac.locationP.y()*getHeight();
+				g.drawImage(map.Packman, (int)(x_pac), (int)(y_pac), 25, 25, null);
+			}
 		}
+		catch(ConcurrentModificationException e) {}
 	}
 
 
@@ -388,11 +382,13 @@ public class MyFrame extends JFrame implements MouseListener {
 		double y_temp = arg0.getY();
 		x_temp = x_temp/getWidth();
 		y_temp = y_temp/getHeight();
+
 		if(isGamer == 0) {
 			Packman pac = new Packman(new Point3D(x_temp,y_temp,0),speed,id,Radius,"P");
 			Packmans.add(pac);	
 			id++;
 		}
+		
 		if(isGamer == 1) {
 			Fruit fru = new Fruit(speed,id,new Point3D(x_temp,y_temp,0),"F");
 			Fruits.add(fru);	
