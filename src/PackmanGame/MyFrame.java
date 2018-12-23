@@ -361,6 +361,11 @@ public class MyFrame extends JFrame implements MouseListener {
 			}
 		}
 		catch(ConcurrentModificationException e) {}
+		try {
+			Thread.sleep(250);
+		}catch(InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 
