@@ -47,16 +47,16 @@ In this class we use the class Layer to receive multiple layers so we could a km
 This class represents target (the target cannot move), each target (fruit) has an ID number, weight, map location (in meters or pixel) and string type.
 - Packman- 
 This class represents packman (the packman capable of movement), each packman has an ID number, speed, radius, map location (in meters or pixel) and string type. 
--Box-
+- Box-
 This calss represents a box, each box is defined by two points.
--Ghost-
+- Ghost-
 This class represents a gohst, each ghost has an ID number, spees, radius and its location on the map.
--Player-
+- Player-
 This class represents the player, each game we have only one player. The player has a a start point and has
 the ability to move by moving the mouse on the screen.  
 - Game- 
 In this class we have a list of packman and a list of fruits. This class has the ability to be built from the data it receives from the csv file, and also to create a csv file with the data it receives from a new game we created.
-- Map- 
+-  Map- 
 This class represent the map which we use in the game. It included the map image, the fruit image and the packman image.
 The class calculates conversion of coordinates from global representation to pixel and vice versa, and also calculates the distance in meters between 2 pixel points.
 - MyFrame-  
