@@ -7,13 +7,13 @@ each packman has a speed at which he can advance to the next fruit,
 and an eating radius that defines the minimum required proximity to the fruit he want to eat.
 The game configuration will be determined by the information given in a predetermined
 CSV file or file that we have created. We have created a menu for the user that will
-allow him to create his own game by placing the packman and fruits on the map,
+allow him to create his own game by placing the packman, fruits, boxes, ghosts and the player on the map,
 and setting the radius and speed for the packman , and export the game to a csv file,
 in addition the menu allows him to upload an existing file of the game and run the game.
-In order to have all the fruits eaten in the shortest time, we have created an algorithm
-that will calculate the most effective way for each packman to eat the fruit he has
-reached in the shortest time, thus creating the path where he can eat the maximum
-amount of fruit given his speed and radius.
+There are 2 options to start the game:
+option one is the automatic game, there you need to choose the game you want to play and press 
+"play", the algorithm will calculate the shortest path to eat all the fruits and the  packmans.
+option two is to play by yourself by moving the mouse on the screen to the fruit or fckman to which you want to go.
 
 ## Authors
 Or Shemesh & Yaara Goldenberg. 
