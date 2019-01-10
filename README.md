@@ -47,6 +47,13 @@ In this class we use the class Layer to receive multiple layers so we could a km
 This class represents target (the target cannot move), each target (fruit) has an ID number, weight, map location (in meters or pixel) and string type.
 - Packman- 
 This class represents packman (the packman capable of movement), each packman has an ID number, speed, radius, map location (in meters or pixel) and string type. 
+-Box-
+This calss represents a box, each box is defined by two points.
+-Ghost-
+This class represents a gohst, each ghost has an ID number, spees, radius and its location on the map.
+-Player-
+This class represents the player, each game we have only one player. The player has a a start point and has
+the ability to move by moving the mouse on the screen.  
 - Game- 
 In this class we have a list of packman and a list of fruits. This class has the ability to be built from the data it receives from the csv file, and also to create a csv file with the data it receives from a new game we created.
 - Map- 
@@ -54,9 +61,5 @@ This class represent the map which we use in the game. It included the map image
 The class calculates conversion of coordinates from global representation to pixel and vice versa, and also calculates the distance in meters between 2 pixel points.
 - MyFrame-  
 This class is a graphical class that displays the packman and fruits on the map, showing the algorithm operation we created in the ShortestPathAlgo class, and also performing a recovery of data from csv files or creating a game by selecting the fruit and packman and positioning them on the map.
-- Path- 
-This class include the paths that each packman does in the game.
-- Path2KML-
- This class gets all the paths that the packman does in the game and saves them in a kml file, the path is saved so that we can run it on google earth and see the path that each packman does.
-- ShortestPathAlgo- 
-This class receives a list of fruit packman and a list of fruits and calculates the shortest path for each packman considering its speed and radius so that all of the fruits will eat as fast as possible.
+-Algorithm-
+This class contains all the calculations so that the algorithm will calculate the shortest and best path in order to get as many points as possible in the game.
