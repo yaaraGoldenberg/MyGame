@@ -22,10 +22,8 @@ Or Shemesh & Yaara Goldenberg.
 To start the program Import from your computer a csv file that containing the game data
 or create your own game by selecting the fruit and packman and positioning them on the map.
 Afterwards press the "start" button to start the game.
-### Example of the game:
-![20181220_151449](https://user-images.githubusercontent.com/44780654/50287115-355f6700-046a-11e9-9e9d-822963941fef.gif)
-### KML file example:
-![20181220_185317](https://user-images.githubusercontent.com/44780654/50298886-eaa11780-0488-11e9-9c27-dc77d5ea0494.gif)
+### Example of the automatic game:
+![20190110_115121](https://user-images.githubusercontent.com/44780654/50961790-56e3c980-14d1-11e9-8bc4-d439e85bf96d.gif)
 ## Description the packages and classes
 ### Package:
 #### Coords:
