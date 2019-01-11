@@ -1,5 +1,5 @@
 package PackmanGame;
-import Geom.Point3D;
+import myGeom.Point3D;
 public class Fruit {
 
 	Point3D locationF;
@@ -7,7 +7,7 @@ public class Fruit {
 	String type;
 
 	/**
-	 * A defult constructor
+	 * A default constructor
 	 */
 	public Fruit() {
 		this.ID = 0;
@@ -17,7 +17,7 @@ public class Fruit {
 	}
 
 	/**
-	 * A constructor that gats 4 element and initializing the variables.
+	 * A constructor that gets 4 element and initializing the variables.
 	 * @param weight
 	 * @param ID
 	 * @param p
@@ -30,6 +30,10 @@ public class Fruit {
 		this.type = type;
 	}
 
+	public Fruit(Point3D f) {
+		this.locationF = f;
+	}
+	
 	/**
 	 * A copy constructor.
 	 * @param other
@@ -48,9 +52,9 @@ public class Fruit {
 	public Fruit (String LineCsv) {
 		String[] Getdata=LineCsv.split(",");
 		this.type = Getdata[0];
-		this.ID = Integer.parseInt(Getdata[1]);
+		this.ID = (int)Double.parseDouble(Getdata[1]);
 		this.locationF = new Point3D(Double.parseDouble(Getdata[3]),Double.parseDouble(Getdata[2]),Double.parseDouble(Getdata[4]));
-		this.weight = Integer.parseInt(Getdata[5]);
+		this.weight = (int)Double.parseDouble(Getdata[5]);
 	}
 
 	/**

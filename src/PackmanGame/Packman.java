@@ -1,5 +1,5 @@
 package PackmanGame;
-import Geom.Point3D;
+import myGeom.Point3D;
 public class Packman {
 
 	Point3D locationP;
@@ -7,7 +7,7 @@ public class Packman {
 	String type;
 	
 	/**
-	 * A defult constructor.
+	 * A default constructor.
 	 */
 	public Packman() {
 		this.locationP = new Point3D(0,0);
@@ -32,6 +32,11 @@ public class Packman {
 		this.radius = radius;
 		this.type = type;
 	}
+	
+	public Packman(Point3D p, int speed) {
+		this.locationP = p;
+		this.speed = speed;
+	}
 
 	/**
 	 * A copy constructor.
@@ -52,14 +57,14 @@ public class Packman {
 	public Packman (String LineCsv) {
 		String[] Getdata=LineCsv.split(",");
 		this.type = Getdata[0];
-		this.ID = Integer.parseInt(Getdata[1]);
+		this.ID = (int)Double.parseDouble(Getdata[1]);
 		this.locationP = new Point3D(Double.parseDouble(Getdata[3]),Double.parseDouble(Getdata[2]),Double.parseDouble(Getdata[4]));
-		this.speed = Integer.parseInt(Getdata[5]);
-		this.radius = Integer.parseInt(Getdata[6]);
+		this.speed = (int)Double.parseDouble(Getdata[5]);
+		this.radius = (int)Double.parseDouble(Getdata[6]);
 	}
 	
 	/**
-	 * getters and settrs methods.
+	 * getters and setters methods.
 	 * 
 	 */
 	public Point3D getLocation() {
@@ -105,4 +110,5 @@ public class Packman {
 	public String toString() {
 		return "Type: " + this.type + " ID: " + this.ID + " Point: " + this.locationP + " Speed: " + this.speed + " Radius: " + this.radius;
 	}
+	
 }
