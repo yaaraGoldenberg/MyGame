@@ -1,4 +1,4 @@
-# project gps coordinates
+# MyGame
 In this project we have developed a system that enables the collection of geographic
 information and the presentation the information in graphical tools.
 
